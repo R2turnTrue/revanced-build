@@ -93,8 +93,8 @@ done
 #fi
 
 # If the variables are NOT empty, call populate_patches with proper arguments
-[[ ! -z "$excluded_patches" ]] && populate_patches "-e" "$excluded_patches"
-[[ ! -z "$included_patches" ]] && populate_patches "-i" "$included_patches"
+[[ ! -z "$excluded_patches" ]] && populate_patches "--exclude" "$excluded_patches"
+[[ ! -z "$included_patches" ]] && populate_patches "--include" "$included_patches"
 
 mkdir -p build
 
@@ -129,7 +129,7 @@ if [ -f "com.google.android.youtube.apk" ]; then
     java -jar revanced-cli.jar patch \
     	--merge revanced-integrations.apk \
     	--patch-bundle revanced-patches.jar \
-        --include ${patches[@]} \
+        ${patches[@]} \
 	    -o "build/revanced-youtube-$(cat versions.json | grep -oP '(?<="com.google.android.youtube.apk": ")[^"]*').apk" \
  	    com.google.android.youtube.apk
 else
