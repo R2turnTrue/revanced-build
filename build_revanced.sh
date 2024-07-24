@@ -133,7 +133,8 @@ echo java -jar revanced-cli.jar patch \
         ${patches[@]} \
 	    -o "build/revanced-youtube-$(cat versions.json | grep -oP '(?<="com.google.android.youtube.apk": ")[^"]*').apk" \
  	    com.google.android.youtube.apk
-echo ""
+echo "."
+echo "."
 
 if [ -f "com.google.android.youtube.apk" ]; then
     java -jar revanced-cli.jar patch \
