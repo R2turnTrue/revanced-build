@@ -3,9 +3,9 @@
 declare -A apks
 
 apks["com.google.android.youtube.apk"]=dl_yt
-apks["com.google.android.apps.youtube.music.apk"]=dl_ytm
-apks["com.zhiliaoapp.musically.apk"]=dl_tt
-apks["tv.twitch.android.app.apk"]=dl_twi
+#apks["com.google.android.apps.youtube.music.apk"]=dl_ytm
+#apks["com.zhiliaoapp.musically.apk"]=dl_tt
+#apks["tv.twitch.android.app.apk"]=dl_twi
 
 ## Functions
 

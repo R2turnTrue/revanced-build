@@ -44,8 +44,9 @@ get_artifact_download_url() {
     local api_url result
     api_url="https://api.github.com/repos/$1/releases/latest"
     # shellcheck disable=SC2086
-    result=$(curl -s $api_url | jq ".assets[] | select(.name | contains(\"$2\") and contains(\"$3\") and (contains(\".sig\") | not)) | .browser_download_url")
+    result=$(curl -s $api_url | jq ".assets[] | select(.name | contains(\"$2\") and contains(\"$3\") and (contains(\".asc\") | not)) | .browser_download_url")
     echo "${result:1:-1}"
+    # curl -s https://api.github.com/repos/revanced/revanced-cli/releases/latest | jq ".assets[] | select(.name | contains(\"revanced-cli\") and contains(\".jar\") and (contains(\".asc\") | not)) | .browser_download_url"
 }
 
 # Function for populating patches array, using a function here reduces redundancy & satisfies DRY principals
@@ -75,7 +76,7 @@ for artifact in "${!artifacts[@]}"; do
         echo "Downloading $artifact at $PWD"
         # shellcheck disable=SC2086,SC2046
         echo $(get_artifact_download_url ${artifacts[$artifact]})
-        curl -sLo "$artifact" $(get_artifact_download_url ${artifacts[$artifact]})
+        curl -Lo "$artifact" $(get_artifact_download_url ${artifacts[$artifact]})
     fi
 done
 
