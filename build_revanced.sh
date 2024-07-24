@@ -128,12 +128,13 @@ echo "${patches[@]}"
 echo ""
 echo "RUn CMD:"
 
-CMD=java -jar revanced-cli.jar patch \
+VERS="$(cat versions.json | grep -oP '(?<="com.google.android.youtube.apk": ")[^"]*')"
+CMD="java -jar revanced-cli.jar patch \
         com.google.android.youtube.apk \
     	--patch-bundle revanced-patches.jar \
         --include \"Miniplayer ${patches[@]} \
-	    -o "build/revanced-youtube-$(cat versions.json | grep -oP '(?<="com.google.android.youtube.apk": ")[^"]*').apk" \
-        --merge revanced-integrations.apk
+	    -o \"build/revanced-youtube-$VERS.apk\" \
+        --merge revanced-integrations.apk"
 
 echo "$CMD"
 
