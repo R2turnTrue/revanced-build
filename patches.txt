@@ -10,4 +10,4 @@ Hide ads
 Playback speed
 Remember video quality
 Video ads
-Return YouTube Dislike"
+Return YouTube Dislike\"
