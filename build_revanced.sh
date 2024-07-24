@@ -34,8 +34,8 @@ artifacts["revanced-integrations.apk"]="revanced/revanced-integrations revanced-
 artifacts["revanced-cli.jar"]="revanced/revanced-cli revanced-cli .jar"
 artifacts["revanced-patches.jar"]="revanced/revanced-patches revanced-patches .jar"
 fi
-artifacts["vanced-microG.apk"]="inotia00/VancedMicroG microg .apk"
-artifacts["apkeep"]="EFForg/apkeep apkeep-x86_64-unknown-linux-gnu"
+#artifacts["vanced-microG.apk"]="inotia00/VancedMicroG microg .apk"
+#artifacts["apkeep"]="EFForg/apkeep apkeep-x86_64-unknown-linux-gnu"
 
 ## Functions
 
@@ -72,23 +72,24 @@ fi
 # Fetch all the dependencies
 for artifact in "${!artifacts[@]}"; do
     if [ ! -f "$artifact" ]; then
-        echo "Downloading $artifact"
+        echo "Downloading $artifact at $PWD"
         # shellcheck disable=SC2086,SC2046
+        echo $(get_artifact_download_url ${artifacts[$artifact]})
         curl -sLo "$artifact" $(get_artifact_download_url ${artifacts[$artifact]})
     fi
 done
 
 # Fetch microG
-chmod +x apkeep
+#chmod +x apkeep
 
-if [ ! -f "vanced-microG.apk" ]; then
-    # Vanced microG 0.2.24.220220
-    VMG_VERSION="0.2.24.220220"
+#if [ ! -f "vanced-microG.apk" ]; then
+#    # Vanced microG 0.2.24.220220
+#    VMG_VERSION="0.2.24.220220"
 
-    echo "Downloading Vanced microG"
-    ./apkeep -a com.mgoogle.android.gms@$VMG_VERSION .
-    mv com.mgoogle.android.gms@$VMG_VERSION.apk vanced-microG.apk
-fi
+#    echo "Downloading Vanced microG"
+#    ./apkeep -a com.mgoogle.android.gms@$VMG_VERSION .
+#    mv com.mgoogle.android.gms@$VMG_VERSION.apk vanced-microG.apk
+#fi
 
 # If the variables are NOT empty, call populate_patches with proper arguments
 [[ ! -z "$excluded_patches" ]] && populate_patches "-e" "$excluded_patches"
@@ -119,6 +120,7 @@ function build_youtube_nonroot(){
 echo "************************************"
 echo "Building YouTube Non-root APK"
 echo "************************************"
+echo "AT $PWD"
 
 if [ -f "com.google.android.youtube.apk" ]; then
     java -jar revanced-cli.jar patch \
