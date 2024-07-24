@@ -1,13 +1,13 @@
 # EXCLUDE PATCHES FROM BELOW. DO NOT REMOVE THIS LINE
 
 # INCLUDE PATCHES FROM BELOW. DO NOT REMOVE THIS LINE
-"Remove background playback restriction"
-"Spoof client"
-"Copy video URL"
-"Downloads"
-"GmsCore Support"
-"Hide ads"
-"Playback speed"
-"Remember video quality"
-"Video ads"
-"Return YouTube Dislike"
+Remove background playback restriction"
+Spoof client
+Copy video URL
+Downloads
+GmsCore Support
+Hide ads
+Playback speed
+Remember video quality
+Video ads
+Return YouTube Dislike"
