@@ -122,6 +122,8 @@ echo "************************************"
 echo "Building YouTube Non-root APK"
 echo "************************************"
 echo "AT $PWD"
+echo "With Patches"
+echo "${patches[@]}"
 
 if [ -f "com.google.android.youtube.apk" ]; then
     java -jar revanced-cli.jar patch \
