@@ -130,7 +130,7 @@ echo "RUn CMD:"
 echo java -jar revanced-cli.jar patch \
     	--merge revanced-integrations.apk \
     	--patch-bundle revanced-patches.jar \
-        --include \"Miniplayer\" ${patches[@]} \
+        --include \"Miniplayer ${patches[@]} \
 	    -o "build/revanced-youtube-$(cat versions.json | grep -oP '(?<="com.google.android.youtube.apk": ")[^"]*').apk" \
  	    com.google.android.youtube.apk
 echo "."
@@ -140,7 +140,7 @@ if [ -f "com.google.android.youtube.apk" ]; then
     java -jar revanced-cli.jar patch \
     	--merge revanced-integrations.apk \
     	--patch-bundle revanced-patches.jar \
-        --include \"Miniplayer\" ${patches[@]} \
+        --include \"Miniplayer ${patches[@]} \
 	    -o "build/revanced-youtube-$(cat versions.json | grep -oP '(?<="com.google.android.youtube.apk": ")[^"]*').apk" \
  	    com.google.android.youtube.apk
 else
