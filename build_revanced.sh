@@ -93,7 +93,7 @@ done
 #fi
 
 # If the variables are NOT empty, call populate_patches with proper arguments
-[[ ! -z "$excluded_patches" ]] && populate_patches "--exclude" "$excluded_patches"
+#[[ ! -z "$excluded_patches" ]] && populate_patches "--exclude" "$excluded_patches"
 [[ ! -z "$included_patches" ]] && populate_patches "," "$included_patches"
 
 mkdir -p build
@@ -108,7 +108,8 @@ if [ -f "com.google.android.youtube.apk" ]; then
 	-m revanced-integrations.apk \ 
 	-b revanced-patches.jar \
 	--mount \
-        -e microg-support ${patches[@]} \
+        -e microg-support \
+        --include "Miniplayer" ,${patches[@]} \
         $EXPERIMENTAL \
         -o "build/revanced-youtube-$(cat versions.json | grep -oP '(?<="com.google.android.youtube.apk": ")[^"]*')-root.apk" \
 	com.google.android.youtube.apk
@@ -132,6 +133,7 @@ echo java -jar revanced-cli.jar patch \
         ${patches[@]} \
 	    -o "build/revanced-youtube-$(cat versions.json | grep -oP '(?<="com.google.android.youtube.apk": ")[^"]*').apk" \
  	    com.google.android.youtube.apk
+echo ""
 
 if [ -f "com.google.android.youtube.apk" ]; then
     java -jar revanced-cli.jar patch \
