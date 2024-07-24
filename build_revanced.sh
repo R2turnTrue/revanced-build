@@ -128,16 +128,20 @@ echo "${patches[@]}"
 echo ""
 echo "RUn CMD:"
 
-echo "."
-echo "."
-
-if [ -f "com.google.android.youtube.apk" ]; then
-    java -jar revanced-cli.jar patch \
+CMD=java -jar revanced-cli.jar patch \
         com.google.android.youtube.apk \
     	--patch-bundle revanced-patches.jar \
         --include \"Miniplayer ${patches[@]} \
 	    -o "build/revanced-youtube-$(cat versions.json | grep -oP '(?<="com.google.android.youtube.apk": ")[^"]*').apk" \
         --merge revanced-integrations.apk
+
+echo "$CMD"
+
+echo "."
+echo "."
+
+if [ -f "com.google.android.youtube.apk" ]; then
+    echo "$CMD" | bash
 else
     echo "Cannot find YouTube APK, skipping build"
 fi
