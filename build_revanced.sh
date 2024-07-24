@@ -53,7 +53,7 @@ get_artifact_download_url() {
 populate_patches() {
     # Note: <<< defines a 'here-string'. Meaning, it allows reading from variables just like from a file
     while read -r patch; do
-        patches+=("$1 $patch")
+        patches+=("$1$patch")
     done <<< "$2"
 }
 
@@ -94,7 +94,7 @@ done
 
 # If the variables are NOT empty, call populate_patches with proper arguments
 [[ ! -z "$excluded_patches" ]] && populate_patches "--exclude" "$excluded_patches"
-[[ ! -z "$included_patches" ]] && populate_patches "--include" "$included_patches"
+[[ ! -z "$included_patches" ]] && populate_patches "," "$included_patches"
 
 mkdir -p build
 
