@@ -125,12 +125,11 @@ echo "AT $PWD"
 
 if [ -f "com.google.android.youtube.apk" ]; then
     java -jar revanced-cli.jar patch \
-    	-m revanced-integrations.apk \
-    	-b revanced-patches.jar \
-        ${patches[@]} \
-        $EXPERIMENTAL \
-	-o "build/revanced-youtube-$(cat versions.json | grep -oP '(?<="com.google.android.youtube.apk": ")[^"]*').apk" \
- 	com.google.android.youtube.apk
+    	--merge revanced-integrations.apk \
+    	--patch-bundle revanced-patches.jar \
+        --include ${patches[@]} \
+	    -o "build/revanced-youtube-$(cat versions.json | grep -oP '(?<="com.google.android.youtube.apk": ")[^"]*').apk" \
+ 	    com.google.android.youtube.apk
 else
     echo "Cannot find YouTube APK, skipping build"
 fi
